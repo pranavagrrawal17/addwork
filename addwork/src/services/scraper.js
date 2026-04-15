@@ -1,20 +1,18 @@
 export async function scrapePage(url) {
   const isProd = import.meta.env.PROD;
-  const scrapeEndpoint = isProd
-    ? `/api/scrape?url=${encodeURIComponent(url)}`
-    : `http://localhost:3001/scrape?url=${encodeURIComponent(url)}`;
-
   let rawHTML = '';
 
-  // Step 1: Try Puppeteer backend
-  try {
-    const res = await fetch(scrapeEndpoint);
-    if (res.ok) {
-      const data = await res.json();
-      if (data.html && data.html.length > 100) rawHTML = data.html;
+  // Step 1: Try Puppeteer backend (local dev only)
+  if (!isProd) {
+    try {
+      const res = await fetch(`http://localhost:3001/scrape?url=${encodeURIComponent(url)}`);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.html && data.html.length > 100) rawHTML = data.html;
+      }
+    } catch (e) {
+      console.warn('Local Puppeteer failed:', e.message);
     }
-  } catch (e) {
-    console.warn('Puppeteer failed:', e.message);
   }
 
   // Step 2: Fallback to allorigins
