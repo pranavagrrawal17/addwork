@@ -7,28 +7,27 @@
     "dev": "concurrently \"vite\" \"node server/index.js\"",
     "dev:client": "vite",
     "dev:server": "node server/index.js",
-    "build": "vite build && npm run vercel-fix",
-    "vercel-fix": "mkdir -p build && cp -r dist/* build/ && cp -r dist/* public/ 2>/dev/null || true",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
+    "autoprefixer": "^10.5.0",
     "lucide-react": "^1.8.0",
+    "postcss": "^8.5.9",
     "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+    "react-dom": "^19.2.4",
+    "tailwindcss": "^3.4.19",
+    "vite": "^8.0.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^6.0.1",
-    "autoprefixer": "^10.5.0",
     "concurrently": "^9.2.1",
     "eslint": "^9.39.4",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
-    "globals": "^17.4.0",
-    "postcss": "^8.5.9",
-    "tailwindcss": "^3.4.19",
-    "vite": "^8.0.4"
+    "globals": "^17.4.0"
   }
 }
