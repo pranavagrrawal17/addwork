@@ -7,7 +7,8 @@
     "dev": "concurrently \"vite\" \"node server/index.js\"",
     "dev:client": "vite",
     "dev:server": "node server/index.js",
-    "build": "vite build",
+    "build": "vite build && npm run vercel-fix",
+    "vercel-fix": "mkdir -p build && cp -r dist/* build/ && cp -r dist/* public/ 2>/dev/null || true",
     "preview": "vite preview"
   },
   "dependencies": {
